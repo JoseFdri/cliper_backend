@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  node:
+    container_name: cliper_socket
+    image: node:10-alpine
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - /home/node/app/node_modules
+      - ./:/home/node/app
+    command: "npm run start_dev"
+    ports:
+      - "8082:8080"
+  redis:
+    container_name: cliper_redis
+    image: redis:alpine
+  
